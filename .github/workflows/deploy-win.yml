@@ -2,10 +2,10 @@ name: deploy-win
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
 jobs:
   build:
 
@@ -16,13 +16,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: recursive
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake unzip zip
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake unzip zip mingw-w64-x86_64-boost
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
