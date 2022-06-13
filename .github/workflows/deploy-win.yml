@@ -1,0 +1,32 @@
+name: deploy-win
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake unzip zip
+      - name: CI-Build
+        run: |
+          echo 'Running in MSYS2!'
+          ./cibuild-win64.sh
+      - name: Upload binary
+        uses: actions/upload-artifact@v2.2.1
+        with:
+          name: deploy-win.zip
+          # A file, directory or wildcard pattern that describes what to upload
+          path: ./build/deploy-win.zip
