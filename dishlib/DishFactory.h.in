@@ -1,0 +1,18 @@
+#pragma once
+
+#include <memory>
+#include <string>
+#include "AbstractDish.h"
+@DISH_INCLUDES@
+
+namespace dishlib{
+    class DishFactory {
+    public:
+        static std::unique_ptr <AbstractDish> Create(const std::string type) {
+        // generated code
+            @BIG_IF@
+        // end generated code
+            return nullptr;
+        }
+    };
+}
