@@ -2,6 +2,7 @@ file(GLOB DISHSOURCES Dish*.cpp)
 
 # automatically populate factory class
 set(DISH_INCLUDES "")
+set(DISH_TYPES "")
 set(BIG_IF "")
 foreach (VAR ${DISHSOURCES})
     # filename without extension
@@ -10,6 +11,7 @@ foreach (VAR ${DISHSOURCES})
     set(DISH_INCLUDES "${DISH_INCLUDES}#include \"${MYFILE_WITHOUT_EXT}.h\"\n")
     # prepare big if variable for factory
     set(BIG_IF "${BIG_IF}if(type.compare(\"${DISH_NAME}\") == 0) return std::make_unique<${MYFILE_WITHOUT_EXT}>();\n")
+    set(DISH_TYPES "${DISH_TYPES}\"${DISH_NAME}\",")
 endforeach ()
 
 #message(WARNING ${BIG_IF})

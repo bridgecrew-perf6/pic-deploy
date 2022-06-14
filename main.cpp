@@ -28,10 +28,10 @@ int main(int argc, char** argv){
         std::cout << desc << std::endl;
         return 1;
     }
-    unique_ptr<dishlib::AbstractDish> dish = dishlib::DishFactory::Create(dishType);
-    if(nullptr == dish){
+    if(!dishlib::DishFactory::HasDish(dishType)){
         cerr << "Error, dish not available" << endl;
         return -1;
     }
+    unique_ptr<dishlib::AbstractDish> dish = dishlib::DishFactory::Create(dishType);
     dish->Cook();
 }

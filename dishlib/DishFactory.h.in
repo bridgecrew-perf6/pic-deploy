@@ -2,17 +2,25 @@
 
 #include <memory>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include "AbstractDish.h"
+// generated code
 @DISH_INCLUDES@
 
 namespace dishlib{
     class DishFactory {
     public:
         static std::unique_ptr <AbstractDish> Create(const std::string type) {
-        // generated code
+            // generated code
             @BIG_IF@
-        // end generated code
+            // end generated code
             return nullptr;
+        }
+        static bool HasDish(std::string const &s){
+            // generated code
+            std::vector<std::string> const DISH_TYPES {@DISH_TYPES@};
+            return std::find(DISH_TYPES.begin(), DISH_TYPES.end(), s) != DISH_TYPES.end();
         }
     };
 }
