@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(dishlib)
 
-set(Boost_USE_STATIC_LIBS        ON)  # only find static libs
+set(Boost_USE_STATIC_LIBS ON)  # only find static libs
 
 find_package(Boost 1.67.0 COMPONENTS program_options REQUIRED)
 
